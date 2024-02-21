@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/Product'); // Importez le modèle de produit que vous avez créé.
+const Product = require('../models/product'); // Importez le modèle de produit que vous avez créé.
 const multer = require('multer');
 
 module.exports = (db) => {
