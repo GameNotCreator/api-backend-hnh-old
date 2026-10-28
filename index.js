@@ -5,6 +5,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+dotenv.config();
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const nodemailer = require("nodemailer");
@@ -20,7 +21,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 app.use(session({
-  secret: 'REDACTED_SECRET', 
+  secret: process.env.SESSION_SECRET, 
   resave: false,
   saveUninitialized: false,
   rolling: true, // <-- Ajouter cette ligne
@@ -31,8 +32,6 @@ app.use(session({
   }
 }));
 
-
-dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
